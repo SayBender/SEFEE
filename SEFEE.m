@@ -17,16 +17,17 @@ function [Tf,time,results,Tfw] = SEFEE(Z,obsA,obsB,tsteps,R,e)
 %   side information and the dimensions as its objects. The code automatically detects if
 %   we have submitted a 3D array or a struct. In former case, CP_ALS from tensor_toolbox is used while in latter 
 %   CMTF_toolbox is used in which case the struct should comply with cmtf_check.m which verifies if the struct works with CMTF_toolbox.
-%   - obsA and obsB: control the size of observed tensor. This is the portion of the
-%   data that is observed.  It is recommended to give large enough tensor size to allow
-%   for prediction algorithm to pick up time-of-day effects. For example,
+%   - obsA and obsB: control the size of observed tensor. This is the subset of the
+%   tensor data that is observed.  It is recommended to give large enough observed tensor to allow
+%   for prediction algorithm to pick up time-of-day effects. But too large a observed tensor will hamper computation time.
+% For example,
 %   set obsA and obsB to a value that amounts to 1 week or multiple of weeks
 %   depending on size of your other dimensions, the context (workload, scenario, usecase) and the time-bin used. For
 %   example, if the data is 2-hour time-binned, then there are 84 2 hours
 %   in a week, Autocorrelation function shifts the trace and I've seen in
 %   practice if we add 2 more to the size it will accomodate up
 %   to the desired (e.g. 84) time-of-day effect, so in the example we use
-%   86 (84 +2).
+%   86 (84 +2). If the data is day binned, then an observed window amounting to a month would be a good consideration.
 %   - tsteps: for how many time-steps you want to run the prediction/simulation. So
 %   the way SEFEE works is, it predicts the next time-step and once the
 %   actual data arrives, it shifts the observed window and repeats in a moving window fashion. So it
