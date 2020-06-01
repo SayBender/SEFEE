@@ -182,7 +182,6 @@ for i=2:tsteps-1
                 %e = tabs2(find(tabs2(:,2)==max(tabs2(2:end,2))));
                 e = tabs2(tabs2(:,2)==max(tabs2(2:end,2)));
             end
-            %hitMiss3D(D(:,:,ta+1:ta+i-1),Tf);
         end
     end
     %if mod(i,100)==0   %to save the predicted tensor every 100 steps
@@ -209,5 +208,3 @@ time = timer_tps + timer_o;
 fprintf("### Total time = %.3f seconds | Average time per step = %.3f seconds\n###", time, tps); 
 
 end
-
-
