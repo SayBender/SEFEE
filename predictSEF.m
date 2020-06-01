@@ -84,7 +84,7 @@ lambda = trainTdec.lambda;
 if htod
     Tpred = htodOuterProduct(trainTdec,transpose(s));
 else % if htod is 0 then the time factor will be computed simply by averaging over the last 3 time slices according to e, and then the predicted tensor is calcualted using regular outer product.
-    g = computeTemporalFac(C,TW,e);  % modified temporal factor   %TW default = 3 and e default is 1
+    g = modifyTemporalFac(C,TW,e);  % modified temporal factor   %TW default = 3 and e default is 1
     Tpred = outp(A,B,g,lambda); % use A and B from the train + g(e.g. TW = 3 should return the average of the last 3 Ck from C factor matrix)
 end
 
