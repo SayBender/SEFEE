@@ -1,2 +1,0 @@
-This is just the placeholder, Please download tensor_toolbox from:https://www.sandia.gov/~tgkolda/TensorToolbox/index-2.6.html
-Please cite the appropriate references as specified in the publisher website.
