@@ -205,7 +205,7 @@ end
 results = him(D(:,:,obsB+1:obsB+tsteps),round(Tf)); %saving the performance results at 0.5 threshold.
 tps = timer_tps/count;
 time = timer_tps + timer_o;
-fprintf("### Total time = %.3f seconds | Average time per step = %.3f seconds\n###", tps, time); 
+fprintf("### Total time = %.3f seconds | Average time per step = %.3f seconds\n###", time, tps); 
 
 end
 
