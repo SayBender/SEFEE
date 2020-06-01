@@ -34,26 +34,24 @@ else
     D = Z;
 end
 
-trainT= D(:,:,obsA:obsB); %observed tensor from original data
+obsT= D(:,:,obsA:obsB); %observed tensor from original data
 if isfield(Z,'miss')
     wT = W(:,:,obsA:obsB);
 end
-%testT = D(:,:,ta+1);  % test set original data (we will compare estimate against this), testT will not be given to the model
-trainT = tensor(trainT); %changing the double 3D array to tensor data type from tensor_toolbox, so it could be passed to CP functions in tensor_toolbox
+obsT = tensor(obsT); %changing the double 3D array to tensor data type from tensor_toolbox, so it could be passed to CP functions in tensor_toolbox
 
-trainSize = size(trainT);
+obsSize = size(obsT);
 if R==0 %setting R equal to a loose upper bound limit. this value is usually too high and it will result in overfactoring and poor results.
     %   so it is best to set R manually.
-    R = min([trainSize(1)*trainSize(2) trainSize(1)*trainSize(3) trainSize(2)*trainSize(3)]); 
+    R = min([obsSize(1)*obsSize(2) obsSize(1)*obsSize(3) obsSize(2)*obsSize(3)]); 
 end
-fprintf('Dimension of train set is: %d , %d, %d. Using Rank R= %d for decomposition \n', trainSize, R);
+fprintf('Dimension of observed tensor is: %d , %d, %d. Using Rank R= %d for decomposition \n', obsSize, R);
 
 fprintf('Predicting(estimating) values at time %d \n', obsB+1);
-%fprintf('Dimension of test set is: %d , %d, %d \n', size(testT));
 fprintf('\n\n');
 
 if isstruct(Z)
-    Z.object{1} = trainT;
+    Z.object{1} = obsT;
     Z.size = unique([size(Z.object{1}) size(Z.object{2})],'stable'); % fixing the size variable based on Z objects.
     if isfield(Z,'miss')
         Z.miss{1} = tensor(wT);
@@ -65,27 +63,27 @@ if isstruct(Z)
         options.MaxIters = 1300;
         %options.StopTol = 1e-8;
         %options.RelFuncTol = 1e-8;
-        trainTdec = cmtf_opt(Z,R,'alg','ncg','alg_options',options); %TrainTdec is trainTensor decomposed into factor matrices.
+        obsTdec = cmtf_opt(Z,R,'alg','ncg','alg_options',options); %obsTdec is observed Tensor decomposed into factor matrices.
     else
-    trainTdec = cmtf_opt(Z,R); %all default options.
+    obsTdec = cmtf_opt(Z,R); %all default options.
     end
 else
     if customOptions
-        trainTdec = cp_als(trainT,R,'maxiters',100); 
+        obsTdec = cp_als(obsT,R,'maxiters',100); 
     else
-        trainTdec = cp_als(trainT,R); % training the model with RANK = min(IJ,IK,JK) where I,J,K are modes of the train set
+        obsTdec = cp_als(obsT,R); % decomposing/factorising the observed tensor with RANK = min(IJ,IK,JK) where I,J,K are modes of the observed set
     end
 end
-A = trainTdec{1}; B = trainTdec{2}; C= trainTdec{3}; %factor matrices A , B & C
-lambda = trainTdec.lambda;
+A = obsTdec{1}; B = obsTdec{2}; C= obsTdec{3}; %factor matrices A , B & C
+lambda = obsTdec.lambda;
 
 
 
 if htod
-    Tpred = htodOuterProduct(trainTdec,transpose(s));
+    Tpred = htodOuterProduct(obsTdec,transpose(s));
 else % if htod is 0 then the time factor will be computed simply by averaging over the last 3 time slices according to e, and then the predicted tensor is calcualted using regular outer product.
     g = modifyTemporalFac(C,TW,e);  % modified temporal factor   %TW default = 3 and e default is 1
-    Tpred = outp(A,B,g,lambda); % use A and B from the train + g(e.g. TW = 3 should return the average of the last 3 Ck from C factor matrix)
+    Tpred = outp(A,B,g,lambda); % use A and B from the factorized observed tensor obsTdec + g(e.g. TW = 3 should return the average of the last 3 Ck from C factor matrix)
 end
 
 % if isfield(Z,'miss')
@@ -93,7 +91,7 @@ end
 %TpredR = round(Tpred);
 Tp = Tpred;
 
-Tdec = trainTdec;
+Tdec = obsTdec;
 
 warning('on',id);
 end
