@@ -202,7 +202,7 @@ Tfw = Tf; %only matters if it is weighted decomposition.
 if isfield(Z,'miss')
     Tf = Tf.*W(:,:,obsB+1:obsB+tsteps);
 end
-results = him(D(:,:,obsB+1:obsB+tsteps),round(Tf)); %saving the performance results at 0.5 threshold.
+results = accuracy(D(:,:,obsB+1:obsB+tsteps),round(Tf)); %saving the performance results at 0.5 threshold (round function).
 tps = timer_tps/count;
 time = timer_tps + timer_o;
 fprintf("### Total time = %.3f seconds | Average time per step = %.3f seconds\n###", time, tps); 
