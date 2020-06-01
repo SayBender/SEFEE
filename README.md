@@ -12,4 +12,6 @@ Download the relevant libraries and put them in the same folder as the other .m 
 
 You can run the prediction by simply running SEFEE.m by inputing a tensor (which can include all the data) and giving the index for the desired observed window and time-steps to predict. There are detailed explanations inside SEFEE and predictSEF which are the main functions.
 
+The data used to conduct experiments in the paper are proprietary. Thus, a sample tensor data is provided in sample.mat.
+
 AN EXAMPLE AND SAMPLE DATA WILL BE ADDED VERY SOON 
