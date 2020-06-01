@@ -166,7 +166,7 @@ toc;
     timer_tps = timer_tps + toc;
     count = count +1;
     fprintf('*** predicion of time-step [%d] finished in [%.2f] seconds.***\n',2,toc);
-% Moving window training process...
+% Moving window process...
 
 for i=2:tsteps-1
     tic;
