@@ -10,9 +10,9 @@ tic
 %   dimension. So the first 10 rows of the Sample rf data is associated
 %   with node 1 to node 10 at first time-steps and row 11 to 20 is
 %   associated with 2nd time step and so on. This is more obvious/visible in
-%   Xtrain and Xtest as the first column captures the node number.
+%   Xtrain (Input feature matrix) and Xtest (testing samples) as the first column captures the node number.
 
-%   Ytrain_rf is the matrix of response variables. We use one column vector
+%   Ytrain_rf is the matrix of response variables (Output response matrix). We use one column vector
 %   at a time to train Random Forest and combine the prediction results
 %   back into matrix form. At the end you can convert Matrix back to tensor
 %   form since it was unrolled version of the tensor in the first place.
