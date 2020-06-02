@@ -14,4 +14,12 @@ You can run the prediction by simply running SEFEE.m by inputing a tensor (which
 
 The data used to conduct experiments in the paper are proprietary. Thus, a sample tensor data is provided in sample.mat.
 
-AN EXAMPLE AND SAMPLE DATA WILL BE ADDED VERY SOON 
+Example:
+To run SEFEE tensor experiment, simply open run_SEFEE.m and fix your paths to the required libraries, and then simply run the script:
+
+run_SEFEE.m
+
+to run in the background:
+nohup /usr/local/MATLAB/R2019a/bin/matlab -nodesktop -nodisplay < run_SEFEE.m > output.txt &
+
+NOTE: you need to download all the required libraries detailed above and fix the paths to the libraries and also the path to where you want the results saved. 
