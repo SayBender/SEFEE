@@ -1,7 +1,7 @@
 %    script to run Multivariate Random Forest with the given data. You are welcome to create your own data or use MVRFdataprep
 %    to create train and test sets with different sizes. In this experiment the first 1000 time-steps is used to create
 %    train set and the next 900 for test sets. Last 100 is unused.
-
+load('sampleData.mat')
 numerrors = 500; 
 Ypred_rf = zeros(9000,numerrors);  % 9000 = 10 * 900 (900 being the length of the test set) refer to MVRFdataprep.m  and below for more details.
 tic
