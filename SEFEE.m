@@ -52,7 +52,7 @@ tic;
 %toggles (flags)
 count =0;
 timer_o = 0; %one-time computations timer: this captures times taken prior to the first prediction. this includes computing the initial tod matrix.
-timer_tps = 0; %this timer captures the total time taken to predict steps. 
+timer_tps = 0; %this timer captures the total time taken to predict all the steps. 
 %                For those steps that happen to coincide with the interval to update tod matrix,
 %                the computation time to compute tod matrix is also
 %                included in that step's time. This setting would inflate
@@ -168,8 +168,8 @@ toc;
     fprintf('*** predicion of time-step [%d] finished in [%.2f] seconds.***\n',2,toc);
 % Moving window process...
 
-for i=2:tsteps-1
-    tic;
+for i=2:tsteps-1 % at each i (step) SEFEE creates a matrix of predictions of the size I X J
+    tic; % to capture time taken to predict time-step (i)
     if dynamic
         if mod(i,sint)==0 % the part of code put here will be the dynamic part as for every sint steps the following variables
             if htod     % are recomputed and passed to proper functions.
@@ -184,7 +184,7 @@ for i=2:tsteps-1
             end
         end
     end
-    %if mod(i,100)==0   %to save the predicted tensor every 100 steps
+    %if mod(i,100)==0   %to save the predicted tensor every 100 steps (Checkpoins)
        %fname = ['/home/ubuntu/data/Comparisons/Outputs/Checkpoint_t' num2str(tsteps) '_R' num2str(R) '_' num2str(obsA) '_' num2str(obsB) '_Iter_' num2str(i)];
        %save(fname,'Tf');
     %end
@@ -203,7 +203,7 @@ if isfield(Z,'miss')
     Tf = Tf.*W(:,:,obsB+1:obsB+tsteps);
 end
 results = accuracy(D(:,:,obsB+1:obsB+tsteps),round(Tf)); %saving the performance results at 0.5 threshold (round function).
-tps = timer_tps/count;
+tps = timer_tps/count; % average time to produce a prediction
 time = timer_tps + timer_o;
 fprintf("### Total time = %.3f seconds | Average time per step = %.3f seconds\n###", time, tps); 
 
