@@ -12,6 +12,12 @@ function [X,Y] = MVRFdataprep(T,G)
 %   error types.
 %  Dimensions: if T is a [I X J X K] 3D array;   X is [(IK +1) X J] matrix  and
 %  Y is [IK X J] matrix. 
+
+%   Example usage: 
+%       [Xtest_rf,Ytest_rf]= MVRFdataprep(Sample_tensor(:,:,1001:end))
+%           having already set Xlen manually to the length of test set (i.e. 900)
+%       [Xtrain_rf,Ytrain_rf]= MVRFdataprep(Sample_tensor);
+%           having already set Xlen manually to the length of train set (i.e. 1000)
 if nargin < 2
     G=[];
 end
