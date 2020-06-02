@@ -15,7 +15,7 @@ You can run the prediction by simply running SEFEE.m by inputing a tensor (which
 The data used to conduct experiments in the paper are proprietary. Thus, a sample tensor data is provided in sample.mat.
 
 Example:
-To run SEFEE tensor experiment, simply open run_SEFEE.m and fix your paths to the required libraries, and then simply run the script:
+To run SEFEE tensor experiment, simply open run_SEFEE.m and fix details speific to your local system (i.e paths,..), and then simply run the script:
 
 run_SEFEE.m
 
@@ -23,3 +23,27 @@ to run in the background:
 nohup /usr/local/MATLAB/R2019a/bin/matlab -nodesktop -nodisplay < run_SEFEE.m > output.txt &
 
 NOTE: you need to download all the required libraries detailed above and fix the paths to the libraries and also the path to where you want the results saved. 
+
+---------------------------------------------------------------------------------------------------------
+
+Baselines:
+
+- MultiVariateRandomForest (MVRF):
+
+To compare with SEFEE which provides multi-output joint prediction we used the idea of Multivariate Random Forests laid out by:
+
+"Segal, M., & Xiao, Y. (2011). Multivariate random forests. Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery, 1(1), 80-87."
+
+An implementation of MVRF already exists using R (https://cran.r-project.org/web/packages/MultivariateRandomForest/MultivariateRandomForest.pdf), however this implementation works only on very small scale data. 
+
+Thus, using Bagged trees in MATLAB R2019 (treeBagger) we implemented MVRF with some differences. The R implementation uses a matrix reponse variable, however, response variable in Bagged trees is column vector. So we train multiple bagged trees (one for each error type). More details are specified in MVRFdo.m.
+
+NOTE: the baselines do not work directly with 3D arrays (tensors) so we had to unroll tensor into matrix (or in other words convert the data into MVRF ready format). All specific details are laid out in MVRFdataprep.m and MVRFdo.m.
+
+To run MVRF experiment, simply run:
+
+MVRFdo.m
+
+the above script loads the data and uses the sample data to run the experiment. You don't need to convert or create the data. However, should you want to create different train and test sets, you can refer to MVRFdataprep.m to create different train and test sets based on the sample tensor. 
+
+----------------------------------------------------------------------------------------------------
