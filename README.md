@@ -17,7 +17,7 @@ The data used to conduct experiments in the paper are proprietary. Thus, a sampl
 Example:
 To run SEFEE tensor experiment, simply open run_SEFEE.m and fix details speific to your local system (i.e paths,..), and then simply run the script:
 
->>run_SEFEE.m
+run_SEFEE.m
 
 to run in the background:
 nohup /usr/local/MATLAB/R2019a/bin/matlab -nodesktop -nodisplay < run_SEFEE.m > output.txt &
