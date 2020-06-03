@@ -55,6 +55,7 @@ Since we are working with multivatiate time-series (predict multiple outputs at 
 
 The data used for LSTM experiment is provided both in Sample_data.mat and separately as data_lstm.csv
 
-data_lstm is exactly the tensor sample data but unrolled along its 3rd dimension to matrix using data_lstm = tenmat(Sample_tensor, [3]) command in MATLAB and then stored as csv so it can be read using pandas read_csv.
+data_lstm is exactly the tensor sample data but unrolled along its 3rd dimension to matrix using tensor_toolbox's tenmat function and then stored as csv so it can be read using pandas read_csv. This way, the rows would represent time and column would represent node and error information. For example row 1 column 15 would represent, time 1, node 5 at error 2 (remember we have 10 nodes).
+
 
 
