@@ -28,9 +28,9 @@ NOTE: you need to download all the required libraries detailed above and fix the
 
 Baselines:
 
-- MultiVariateRandomForest (MVRF):
+- Random Forests:
 
-To compare with SEFEE which provides multi-output joint prediction we used the idea of Multivariate Random Forests laid out by:
+To compare with SEFEE which provides multi-output joint prediction we used the idea of Multivariate Random Forests (MVRF) laid out by:
 
 "Segal, M., & Xiao, Y. (2011). Multivariate random forests. Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery, 1(1), 80-87."
 
@@ -47,3 +47,12 @@ MVRFdo.m
 the above script loads the data and uses the sample data to run the experiment. You don't need to convert or create the data. However, should you want to create different train and test sets, you can refer to MVRFdataprep.m to create different subsets for train and test sets based on the sample tensor.
 
 ----------------------------------------------------------------------------------------------------
+
+- LSTM
+
+(python 3)
+Since we are working with multivatiate time-series (predict multiple outputs at each prediction) we need to use a multivatiate LSTM model. Thus, we used the code from: https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/ Under "Multiple Parallel Series" with minimal change. We used Bidirectional LSTM instead of Vanilla.
+
+The data used for LSTM experiment is provided both in Sample_data.mat and separately as data_lstm.csv
+
+data_lstm is exactly the tensor sample data but unrolled along its 3rd dimension to matrix using data_lstm = tenmat(Sample_tensor, [3]) command in MATLAB and then stored as csv so it can be read using pandas read_csv. 
