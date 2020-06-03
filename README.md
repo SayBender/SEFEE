@@ -51,8 +51,10 @@ the above script loads the data and uses the sample data to run the experiment. 
 - LSTM
 
 (python 3)
-Since we are working with multivatiate time-series (predict multiple outputs at each prediction) we need to use a multivatiate LSTM model. Thus, we used the code from: https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/ Under "Multiple Parallel Series" with minimal change. We used Bidirectional LSTM instead of Vanilla.
+Since we are working with multivatiate time-series (predict multiple outputs at each prediction) we need to use a multivatiate LSTM model. Thus, we used the code from: https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/  with minimal change. We used Bidirectional LSTM instead of Vanilla. To understand how the code prepares the data for multivarite LSTM please refer to the link above and read details under "Multiple Parallel Series".
 
 The data used for LSTM experiment is provided both in Sample_data.mat and separately as data_lstm.csv
 
-data_lstm is exactly the tensor sample data but unrolled along its 3rd dimension to matrix using data_lstm = tenmat(Sample_tensor, [3]) command in MATLAB and then stored as csv so it can be read using pandas read_csv. 
+data_lstm is exactly the tensor sample data but unrolled along its 3rd dimension to matrix using data_lstm = tenmat(Sample_tensor, [3]) command in MATLAB and then stored as csv so it can be read using pandas read_csv.
+
+
