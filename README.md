@@ -57,7 +57,8 @@ The data used for LSTM experiment is provided both in Sample_data.mat and separa
 
 data_lstm is exactly the tensor sample data but unrolled along its 3rd dimension to matrix using tensor_toolbox's tenmat function and then stored as csv so it can be read using pandas read_csv. This way, the rows would represent time and column would represent node and error information. For example row 1 column 15 would represent, time 1, node 5 at error 2 (remember we have 10 nodes).
 
-\#This code is entirely based on the link provided above with minimal change. for more details please refer to that link.
+This code is entirely based on the link provided above with minimal change. for more details please refer to that link.
+
 import numpy as np
 import pandas as pd 
 from keras.models import load_model
@@ -87,7 +88,7 @@ our_model.fit(X[:train_size],y[:train_size], epochs=1000)
 
 our_model.save('Model-4steps-BiDir.h5')
 
-\#---------------------
+>#---------------------
 
 def define_model(n_steps,n_features):
     # choose a number of time steps
