@@ -45,7 +45,7 @@ To run MVRF experiment, simply run:
 ```
 MVRFdo.m
 ```
-the above script loads the data and uses the sample data to run the experiment. You don't need to convert or create the data. However, should you want to create different train and test sets, you can refer to MVRFdataprep.m to create different subsets for train and test sets based on the sample tensor.
+the above script loads the data and uses the sample data to run the experiment. You don't need to convert or create the data. However, you can refer to MVRFdataprep.m to create different subsets for train and test sets based on the sample tensor.
 
 ----------------------------------------------------------------------------------------------------
 
