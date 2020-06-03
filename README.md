@@ -57,5 +57,62 @@ The data used for LSTM experiment is provided both in Sample_data.mat and separa
 
 data_lstm is exactly the tensor sample data but unrolled along its 3rd dimension to matrix using tensor_toolbox's tenmat function and then stored as csv so it can be read using pandas read_csv. This way, the rows would represent time and column would represent node and error information. For example row 1 column 15 would represent, time 1, node 5 at error 2 (remember we have 10 nodes).
 
+# This code is entirely based on the link provided above with minimal change. for more details please refer to that link.
+import numpy as np
+import pandas as pd 
+from keras.models import load_model
 
 
+from numpy import array
+from keras.models import Sequential
+from keras.layers import LSTM
+from keras.layers import Dense
+from keras.layers import Bidirectional
+
+
+data = pd.read_csv('data_lstm.csv')
+data = np.array(data)
+
+num_step = 4
+num_features = data.shape[1]
+# defining the model
+our_model = define_model(num_step,num_features)
+# creating train dataset
+X, y = BiDir.split_sequences(data,num_step)
+print(X.shape, y.shape)
+
+train_size = 1000
+
+our_model.fit(X[:train_size],y[:train_size], epochs=1000)
+
+our_model.save('Model-4steps-BiDir.h5')
+
+#---------------------
+
+def define_model(n_steps,n_features):
+    # choose a number of time steps
+    # convert into input/output
+    #X, y = split_sequences(data, n_steps)
+    # the dataset knows the number of features, e.g. 2
+    # define model
+    model = Sequential()
+    model.add(Bidirectional(LSTM(100, activation='relu', return_sequences=True, input_shape=(n_steps, n_features))))
+    model.add(Bidirectional(LSTM(100, activation='relu')))
+    model.add(Dense(n_features))
+    model.compile(optimizer='adam', loss='mse',metrics=['accuracy'])
+    #print(model.summary())
+    return model
+
+def split_sequences(sequences, n_steps):
+    X, y = list(), list()
+    for i in range(len(sequences)):
+        # find the end of this pattern
+        end_ix = i + n_steps
+        # check if we are beyond the dataset
+        if end_ix > len(sequences)-1:
+            break
+        # gather input and output parts of the pattern
+        seq_x, seq_y = sequences[i:end_ix, :], sequences[end_ix, :]
+        X.append(seq_x)
+        y.append(seq_y)
+    return array(X), array(y)
