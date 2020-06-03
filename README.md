@@ -16,12 +16,13 @@ The data used to conduct experiments in the paper are proprietary. Thus, a sampl
 
 Example:
 To run SEFEE tensor experiment, simply open run_SEFEE.m and fix details speific to your local system (i.e paths,..), and then simply run the script:
-
+```
 run_SEFEE.m
-
+```
 to run in the background:
+```
 nohup /usr/local/MATLAB/R2019a/bin/matlab -nodesktop -nodisplay < run_SEFEE.m > output.txt &
-
+```
 NOTE: you need to download all the required libraries detailed above and fix the paths to the libraries and also the path to where you want the results saved. 
 
 ---------------------------------------------------------------------------------------------------------
@@ -41,9 +42,9 @@ Thus, using Bagged trees in MATLAB R2019 (treeBagger) we implemented MVRF with s
 NOTE: the baselines do not work directly with 3D arrays (tensors) so we had to unroll tensor into matrix (or in other words convert the data into MVRF ready format). All specific details are laid out in MVRFdataprep.m and MVRFdo.m.
 
 To run MVRF experiment, simply run:
-
+```
 MVRFdo.m
-
+```
 the above script loads the data and uses the sample data to run the experiment. You don't need to convert or create the data. However, should you want to create different train and test sets, you can refer to MVRFdataprep.m to create different subsets for train and test sets based on the sample tensor.
 
 ----------------------------------------------------------------------------------------------------
