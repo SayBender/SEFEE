@@ -31,9 +31,10 @@ for i=1:numerrors  %  we do this in a loop one error at a time, because a matrix
      %          the way the data is treated would be more clear. Note that
      %          by playing with Xlen and by giving the desired portion of the input sample data
      %          you can control the length of train and test sets. 
-     fprintf("predicting error %d\n",i);
+     fprintf("training model for error %d\n",i);
      Mreg = TreeBagger(20,Xtrain_rf,Ytrain_rf(:,i),'NumPredictorsToSample', 400, 'MinLeafSize',60,'Method','regression');
-     Ypred_i = predict(Mreg,Xtest_rf);
+     % training for error i finished. it is possible to train all 500 models first (1 for each error) and then infer after the loop.
+     Ypred_i = predict(Mreg,Xtest_rf); 
      Ypred_rf(:,i)=Ypred_i;
 end
 
