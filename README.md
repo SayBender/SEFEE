@@ -35,7 +35,7 @@ To compare with SEFEE which provides multi-output joint prediction we used the i
 
 "Segal, M., & Xiao, Y. (2011). Multivariate random forests. Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery, 1(1), 80-87."
 
-An implementation of MVRF already exists using R with very detailed documentation (https://cran.r-project.org/web/packages/MultivariateRandomForest/MultivariateRandomForest.pdf), You can use our sample data with that package as well. However this implementation works only on very small scale data. 
+An implementation of MVRF already exists using R with very detailed documentation (https://cran.r-project.org/web/packages/MultivariateRandomForest/MultivariateRandomForest.pdf), You can use our sample data with that package as well. However, R is notoriously slow, and their implementation works only on very small scale data in a reasonable time. 
 
 Thus, using Bagged trees in MATLAB R2019 (treeBagger) we implemented MVRF with some differences. The R implementation uses a matrix reponse variable, however, response variable in Bagged trees is column vector. So we train multiple bagged trees (one for each error type). More details are specified in MVRFdo.m.
 
@@ -45,7 +45,7 @@ To run MVRF experiment, simply run:
 ```
 MVRFdo.m
 ```
-the above script loads the data and uses the sample data to run the experiment. You don't need to convert or create the data. However, you can refer to MVRFdataprep.m to create different subsets for train and test sets based on the sample tensor.
+the above script loads the data and uses the sample data provided to run the experiment. You don't need to convert or create the data. However, you can refer to MVRFdataprep.m to create different subsets for train and test sets based on the sample tensor.
 
 ----------------------------------------------------------------------------------------------------
 
