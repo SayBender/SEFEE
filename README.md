@@ -57,7 +57,7 @@ Since we are working with multivatiate time-series (predict multiple outputs at 
 The data used for LSTM experiment is provided both in Sample_data.mat and separately as data_lstm.csv
 
 data_lstm (dimension: 2000 X 5000) is exactly the tensor sample data (10 nodes X 500 errors X 2000 time-steps) but unrolled along its 3rd dimension to matrix using tensor_toolbox's tenmat function and then stored as csv so it can be read using pandas read_csv. 
-By unrolling the tensor into matrix like this, the rows would represent time-steps which is suitable for time-series prediction. Column would represent the 1st and 2nd dimensions of the original tensors. For example, row 1 column 15 would represent, time 1, node 5 at error 2.
+By unrolling the tensor into matrix like this, we don't lose any information, it is simply a 2D matrix instead of 3D matrix (tensor). The rows would represent time-steps which is suitable for time-series prediction. Column would represent the 1st and 2nd dimensions of the original tensors. For example, row 1 column 15 would represent, time 1, node 5, error 2.
 
 ```
 #   This code is entirely based on the link provided above with minimal change. 
