@@ -1,6 +1,8 @@
 from = 1001; %this is the first time-step that is going to be predicted
 steps = 900; % for how many predictions (step) should we run the experiment
 rank = 200; % you are welcome to try this with different ranks. It might produce better/worse results.
+            % rank of the tensor decomposition depends primarily on the size and dimensions of the tensor. 
+            % So what I suggest is to run a few fast SEFEE runs (10 steps are enough) to get an idea of which rank gives you the best reconstruction accuracy.
 
 fprintf('Initializing experiment ALS on sample data predicting from %d for %d steps and rank %d  \n', from,steps,rank);
 addpath('/path/to/SEFEE_directory/');
