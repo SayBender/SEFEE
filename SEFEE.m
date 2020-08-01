@@ -48,7 +48,6 @@ function [Tf,time,results,Tfw] = SEFEE(Z,obsA,obsB,tsteps,R,e)
 %       - Time: 
            
 fprintf('SEFEE_local\n');
-tic;
 %toggles (flags)
 count =0;
 timer_o = 0; %one-time computations timer: this captures times taken prior to the first prediction. this includes computing the initial tod matrix.
@@ -141,12 +140,11 @@ if htod  % heter ToD effect: this is the initial computation of heterogeneous ti
     tic;
     fprintf('Computing Time-of-day effect from step 1 to %d . \n',obsB);
     [m,s] = acfhelper(D(:,:,1:obsB),lag); % s is the Time-of-day matrix of shape I X J that holds a separate Tod value for each element in tensor.
-    fprintf('heterogeneous time-of-day effect computed in %.2f seconds\n',toc);
-    %timer = timer + toc;
+    elapsed = toc;
+    fprintf('heterogeneous time-of-day effect computed in %.2f seconds\n',elapsed);
+    timer_o = timer_o + elapsed;
 end
 
-toc;
-timer_o = timer_o + toc;
 
 % the first 2 steps are predicted outside the loop to initialize Tf to be a
 % tensor. It is also possible to just do this for 1 step and then use another if
@@ -154,16 +152,16 @@ timer_o = timer_o + toc;
 % from the loop only (if i==1), and then continue as is. 
 tic;
 Tp1 = predictSEF(Z,obsA,obsB,s,R,e);
-toc;
-    timer_tps = timer_tps + toc;
+elapsed = toc;
+    timer_tps = timer_tps + elapsed;
     count = count +1;
     fprintf('*** predicion of time-step [%d] finished in [%.2f] seconds.***\n',1,toc);
     
 tic;
 Tp2 = predictSEF(Z,obsA+1,obsB+1,s,R,e);
 Tf = cat(3,Tp1,Tp2);
-toc;
-    timer_tps = timer_tps + toc;
+elapsed = toc;
+    timer_tps = timer_tps + elapsed;
     count = count +1;
     fprintf('*** predicion of time-step [%d] finished in [%.2f] seconds.***\n',2,toc);
 % Moving window process...
