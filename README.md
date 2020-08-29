@@ -2,6 +2,8 @@
 
 SEFEE is a tensor decomposition based approach to predict storage errors. It is implemented in MATLAB R2019 and uses tensor_toolbox, poblano_toolbox and CMTF_toolbox libraries. Please cite us as well as the libraries below if you plan to use this in your publication:
 
+A persistent DOI or instruction on how to Cite will be written here soon! 
+
 We downloaded these libraries locally at various dates between 2017 and 2019 and used the version at the time, so it is possible the developers changed things about these open-source libraries. We share the version we used, please find the specific versions from publisher's website. If for any reason your downloaded packages were not able to work with SEFEE, please contact SEFEE main author at ayazdi@nevada.unr.edu or amirhessamyazdi@gmail.com. 
 
 - You can find tensor_toolbox at: https://www.tensortoolbox.org/getting_started.html (We used version 2.6)
