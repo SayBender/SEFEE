@@ -1,6 +1,6 @@
 # SEFEE
 
-SEFEE is a Multi-output lightweight forecasting method based on tensor decomposition. It recieves multi-dimensional data as input and outputs multi-dimensional joint predictions. For now, only 3-way tensors are supported. SEFEE is implemented in MATLAB R2019 and uses tensor_toolbox, poblano_toolbox and CMTF_toolbox libraries for tensor operations. If you found this resource useful, please consider citing [this paper](https://dl.acm.org/doi/10.5555/3433701.3433786) as well as the libraries mentioned below. 
+SEFEE is a Multi-output lightweight forecasting approach based on tensor decomposition. It recieves multi-dimensional data as input and outputs multi-dimensional joint predictions. For now, only 3-way tensors are supported. SEFEE is implemented in MATLAB R2019 and uses tensor_toolbox, poblano_toolbox and CMTF_toolbox libraries for tensor operations. If you found this resource useful, please consider citing [this paper](https://dl.acm.org/doi/10.5555/3433701.3433786) as well as the libraries mentioned below. 
 
 We downloaded these libraries locally at various dates between 2017 and 2019 and used the version at the time, so it is possible the developers changed things about these open-source libraries. We share the version we used, please find the specific versions from publisher's website. If for any reason your downloaded packages were not able to work with SEFEE, please contact SEFEE main author at ayazdi@nevada.unr.edu or amirhessamyazdi@gmail.com. 
 
