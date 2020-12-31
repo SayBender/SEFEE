@@ -1,6 +1,24 @@
 # SEFEE
 
-SEFEE is a tensor decomposition based approach to predict storage errors. It is implemented in MATLAB R2019 and uses tensor_toolbox, poblano_toolbox and CMTF_toolbox libraries. Please cite us as well as the libraries below if you plan to use this in your publication:
+SEFEE is a tensor decomposition based approach to predict storage errors. It is implemented in MATLAB R2019 and uses tensor_toolbox, poblano_toolbox and CMTF_toolbox libraries. If you found this resource useful, please consider citing this paper:
+# Citation (BibTeX)
+```
+@inproceedings{10.5555/3433701.3433786,
+author = {Yazdi, Amirhessam and Lin, Xing and Yang, Lei and Yan, Feng},
+title = {SEFEE: Lightweight Storage Error Forecasting in Large-Scale Enterprise Storage Systems},
+year = {2020},
+isbn = {9781728199986},
+publisher = {IEEE Press},
+abstract = {With the rapid growth in scale and complexity, today's enterprise storage systems need to deal with significant amounts of errors. Existing proactive methods mainly focus on machine learning techniques trained using SMART measurements. However, such methods are usually expensive to use in practice and can only be applied to a limited types of errors with a limited scale. We collected more than 23-million storage events from 87 deployed NetApp-ONTAP systems managing 14,371 disks for two years and propose a lightweight training-free storage error forecasting method SEFEE. SEFEE employs Tensor Decomposition to directly analyze storage error-event logs and perform online error prediction for all error types in all storage nodes. SEFEE explores hidden spatio-temporal information that is deeply embedded in the global scale of storage systems to achieve record breaking error forecasting accuracy with minimal prediction overhead.},
+booktitle = {Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis},
+articleno = {64},
+numpages = {14},
+keywords = {lightweight forecasting, tensor decomposition, storage failures, training-free prediction, error prediction},
+location = {Atlanta, Georgia},
+series = {SC '20}
+}
+```
+
 
 A persistent DOI or instruction on how to Cite will be written here soon! 
 
