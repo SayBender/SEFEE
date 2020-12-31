@@ -1,26 +1,6 @@
 # SEFEE
 
-SEFEE is a tensor decomposition based approach to predict storage errors. It is implemented in MATLAB R2019 and uses tensor_toolbox, poblano_toolbox and CMTF_toolbox libraries. If you found this resource useful, please consider citing this paper:
-# Citation (BibTeX)
-```
-@inproceedings{10.5555/3433701.3433786,
-author = {Yazdi, Amirhessam and Lin, Xing and Yang, Lei and Yan, Feng},
-title = {SEFEE: Lightweight Storage Error Forecasting in Large-Scale Enterprise Storage Systems},
-year = {2020},
-isbn = {9781728199986},
-publisher = {IEEE Press},
-abstract = {With the rapid growth in scale and complexity, today's enterprise storage systems need to deal with significant amounts of errors. Existing proactive methods mainly focus on machine learning techniques trained using SMART measurements. However, such methods are usually expensive to use in practice and can only be applied to a limited types of errors with a limited scale. We collected more than 23-million storage events from 87 deployed NetApp-ONTAP systems managing 14,371 disks for two years and propose a lightweight training-free storage error forecasting method SEFEE. SEFEE employs Tensor Decomposition to directly analyze storage error-event logs and perform online error prediction for all error types in all storage nodes. SEFEE explores hidden spatio-temporal information that is deeply embedded in the global scale of storage systems to achieve record breaking error forecasting accuracy with minimal prediction overhead.},
-booktitle = {Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis},
-articleno = {64},
-numpages = {14},
-keywords = {lightweight forecasting, tensor decomposition, storage failures, training-free prediction, error prediction},
-location = {Atlanta, Georgia},
-series = {SC '20}
-}
-```
-
-
-A persistent DOI or instruction on how to Cite will be written here soon! 
+SEFEE is a Multi-output lightweight forecasting method based on tensor decomposition. It recieves multi-dimensional data as input and outputs multi-dimensional joint predictions. For now, only 3-way tensors are supported. SEFEE is implemented in MATLAB R2019 and uses tensor_toolbox, poblano_toolbox and CMTF_toolbox libraries for tensor operations. If you found this resource useful, please consider citing [this paper](https://dl.acm.org/doi/10.5555/3433701.3433786) as well as the libraries mentioned below. 
 
 We downloaded these libraries locally at various dates between 2017 and 2019 and used the version at the time, so it is possible the developers changed things about these open-source libraries. We share the version we used, please find the specific versions from publisher's website. If for any reason your downloaded packages were not able to work with SEFEE, please contact SEFEE main author at ayazdi@nevada.unr.edu or amirhessamyazdi@gmail.com. 
 
@@ -143,4 +123,23 @@ def split_sequences(sequences, n_steps):
         y.append(seq_y)
     return array(X), array(y)
     
+```
+
+# Citation (BibTeX)
+ If you found this resource useful, please consider citing this paper:
+```
+@inproceedings{10.5555/3433701.3433786,
+author = {Yazdi, Amirhessam and Lin, Xing and Yang, Lei and Yan, Feng},
+title = {SEFEE: Lightweight Storage Error Forecasting in Large-Scale Enterprise Storage Systems},
+year = {2020},
+isbn = {9781728199986},
+publisher = {IEEE Press},
+abstract = {With the rapid growth in scale and complexity, today's enterprise storage systems need to deal with significant amounts of errors. Existing proactive methods mainly focus on machine learning techniques trained using SMART measurements. However, such methods are usually expensive to use in practice and can only be applied to a limited types of errors with a limited scale. We collected more than 23-million storage events from 87 deployed NetApp-ONTAP systems managing 14,371 disks for two years and propose a lightweight training-free storage error forecasting method SEFEE. SEFEE employs Tensor Decomposition to directly analyze storage error-event logs and perform online error prediction for all error types in all storage nodes. SEFEE explores hidden spatio-temporal information that is deeply embedded in the global scale of storage systems to achieve record breaking error forecasting accuracy with minimal prediction overhead.},
+booktitle = {Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis},
+articleno = {64},
+numpages = {14},
+keywords = {lightweight forecasting, tensor decomposition, storage failures, training-free prediction, error prediction},
+location = {Atlanta, Georgia},
+series = {SC '20}
+}
 ```
