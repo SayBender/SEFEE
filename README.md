@@ -37,7 +37,7 @@ To compare with SEFEE which provides multi-output joint prediction we used the i
 
 An implementation of MVRF already exists using R with very detailed documentation (https://cran.r-project.org/web/packages/MultivariateRandomForest/MultivariateRandomForest.pdf), You can use our sample data with that package as well. However, R is notoriously slow, and their implementation works only on very small scale data in a reasonable time. 
 
-Thus, using Bagged trees in MATLAB R2019 (treeBagger) we implemented MVRF with some differences. The R implementation uses a matrix reponse variable, however, response variable in Bagged trees is column vector. So we train multiple bagged trees (one for each error type). More details are specified in MVRFdo.m.
+Thus, using Bagged trees in MATLAB R2019 (treeBagger) we implemented MVRF with some differences. The R implementation uses a matrix reponse variable, however, response variable in Bagged trees is column vector. So we train multiple bagged trees (one for each error type). More details are specified in ``MVRFdo.m``.
 
 NOTE: the baselines do not work directly with 3D arrays (tensors) so we had to unroll tensor into matrix (or in other words convert the data into MVRF ready format). All specific details are laid out in MVRFdataprep.m and MVRFdo.m.
 
