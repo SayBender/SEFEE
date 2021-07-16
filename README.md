@@ -10,12 +10,12 @@ We downloaded these libraries locally at various dates between 2017 and 2019 and
 
 Download the relevant libraries and put them in the same folder as the other .m files. 
 
-You can run the prediction by simply running SEFEE.m by inputing a tensor (which can include all the data) and giving the index for the desired observed window and time-steps to predict. There are detailed explanations inside SEFEE and predictSEF which are the main functions.
+You can run the prediction by simply running ``SEFEE.m`` by inputing a tensor (which can include all the data) and giving the index for the desired observed window and time-steps to predict. There are detailed explanations inside SEFEE and predictSEF which are the main functions.
 
 The data used to conduct experiments in the paper are proprietary. Thus, a sample tensor data is provided in sample.mat.
 
 Example:
-To run SEFEE tensor experiment, simply open run_SEFEE.m and fix details speific to your local system (i.e paths,..), and then simply run the script:
+To run SEFEE tensor experiment, simply open ``run_SEFEE.m`` and fix details speific to your local system (i.e paths,..), and then simply run the script:
 ```
 run_SEFEE.m
 ```
@@ -39,7 +39,7 @@ An implementation of MVRF already exists using R with very detailed documentatio
 
 Thus, using Bagged trees in MATLAB R2019 (treeBagger) we implemented MVRF with some differences. The R implementation uses a matrix reponse variable, however, response variable in Bagged trees is column vector. So we train multiple bagged trees (one for each error type). More details are specified in ``MVRFdo.m``.
 
-NOTE: the baselines do not work directly with 3D arrays (tensors) so we had to unroll tensor into matrix (or in other words convert the data into MVRF ready format). All specific details are laid out in MVRFdataprep.m and MVRFdo.m.
+NOTE: the baselines do not work directly with 3D arrays (tensors) so we had to unroll tensor into matrix (or in other words convert the data into MVRF ready format). All specific details are laid out in ``MVRFdataprep.m`` and ``MVRFdo.m``.
 
 To run MVRF experiment, simply run:
 ```
@@ -54,7 +54,7 @@ the above script loads the data and uses the sample data provided to run the exp
 (python 3)
 Since we are working with multivatiate time-series (predict multiple outputs at each prediction) we need to use a multivatiate LSTM model. Thus, we used the code from: https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/  with minimal change. We used Bidirectional LSTM instead of Vanilla. To understand how the code prepares the data for multivarite LSTM please refer to the link above and read details under "Multiple Parallel Series".
 
-The data used for LSTM experiment is provided both in Sample_data.mat and separately as data_lstm.csv
+The data used for LSTM experiment is provided both in Sample_data.mat and separately as ``data_lstm.csv``
 
 data_lstm (dimension: 2000 X 5000) is exactly the tensor sample data (10 nodes X 500 errors X 2000 time-steps) but unrolled along its 3rd dimension to matrix using tensor_toolbox's tenmat function and then stored as csv so it can be read using pandas read_csv. 
 By unrolling the tensor into matrix like this, we don't lose any information, it is simply a 2D matrix instead of 3D matrix (tensor). The rows would represent time-steps which is suitable for time-series prediction. Column would represent the 1st and 2nd dimensions of the original tensors. For example, row 1 column 15 would represent, time 1, node 5, error 2.
